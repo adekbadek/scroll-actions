@@ -12,6 +12,9 @@
   ],
   "author": "Adam Borowski",
   "license": "ISC"
+  "dependencies": {
+    "ramda": "^0.23.0"
+  },
   "devDependencies": {
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",

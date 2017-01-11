@@ -1,3 +1,5 @@
+import { flatten } from 'ramda'
+
 const checkPositions = (actions, firstInvocation = false) => {
   actions.map((action) => {
     action.elements.map((el) => {
@@ -38,15 +40,22 @@ const checkPositions = (actions, firstInvocation = false) => {
 export default function scrollActions (conf) {
   const actions = conf.actions
     .map((action) => {
+      if (action.selectors.length === 0) {
+        throw new Error('action.selectors must have at least one element')
+      }
+      const elements = flatten(action.selectors
+        .map((sel) => {
+          return document.querySelectorAll(sel)
+        })
+      )
       return {
-        elements: action.selectors
-          .map((sel) => {
+        elements: elements
+          .map((DOMElement) => {
             return {
-              DOMElement: document.querySelectorAll(sel)[0],
+              DOMElement,
               isInViewport: false,
             }
-          })
-          .filter((el) => !!el.DOMElement),
+          }),
         ...action
       }
     })
