@@ -1,4 +1,4 @@
-const checkPositions = (actions) => {
+const checkPositions = (actions, firstInvocation = false) => {
   actions.map((action) => {
     action.elements.map((el) => {
       const rect = el.DOMElement.getBoundingClientRect()
@@ -18,7 +18,13 @@ const checkPositions = (actions) => {
           action.inView(el.DOMElement)
         }
         if (action.onEnter && !el.isInViewport) {
-          action.onEnter(el.DOMElement)
+          if (firstInvocation) {
+            setTimeout(() => {
+              action.onEnter(el.DOMElement)
+            }, 1)
+          } else {
+            action.onEnter(el.DOMElement)
+          }
           el.isInViewport = true
         }
       } else if (action.onLeave && el.isInViewport) {
@@ -46,6 +52,6 @@ export default function scrollActions (conf) {
     })
 
   // initial check, then tether to scroll
-  checkPositions(actions)
+  checkPositions(actions, true)
   window.onscroll = () => checkPositions(actions)
 }
