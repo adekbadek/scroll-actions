@@ -12,4 +12,8 @@
   ],
   "author": "Adam Borowski",
   "license": "ISC"
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.13.1",
+  }
 }

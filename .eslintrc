@@ -1,0 +1,40 @@
+{
+    "extends": "eslint:recommended",
+    "parser": "babel-eslint",
+    "rules": {
+        "strict": 0,
+        "indent": [
+            1,
+            2,
+            {"SwitchCase": 1}
+        ],
+        "quotes": [
+            1,
+            "single"
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "no-use-before-define": [
+            2,
+            "nofunc"
+        ],
+        "no-multi-spaces": 0,
+        "key-spacing": [0, {
+            "beforeColon": true,
+            "afterColon": true
+        }],
+        "no-console": 0,
+        "brace-style": [
+            2,
+            "1tbs",
+            { "allowSingleLine": true }
+        ]
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    }
+}
