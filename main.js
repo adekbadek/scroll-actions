@@ -5,7 +5,7 @@ const checkPositions = (actions, firstInvocation = false) => {
     action.elements.map((el) => {
       const rect = el.DOMElement.getBoundingClientRect()
       const elHeight = el.DOMElement.offsetHeight
-      const offset = action.offsetPerc ? (window.innerHeight * action.offsetPerc/100) : 0
+      const offset = action.offsetPerc && !firstInvocation ? (window.innerHeight * action.offsetPerc/100) : 0
 
       if (
         rect.left < 0 ||
