@@ -8,8 +8,8 @@ const checkPositions = (actions, firstInvocation = false) => {
       const offset = action.offsetPerc && !firstInvocation ? (window.innerHeight * action.offsetPerc/100) : 0
 
       if (
-        rect.left < 0 ||
-        rect.right > window.innerWidth
+        rect.right < 0 ||
+        rect.left > window.innerWidth
       ) { return }
 
       if (
