@@ -1,3 +1,4 @@
+import throttle from 'lodash/throttle'
 import { flatten } from 'ramda'
 
 const checkPositions = (actions, firstInvocation = false) => {
@@ -62,5 +63,6 @@ export default function scrollActions (conf) {
 
   // initial check, then tether to scroll
   checkPositions(actions, true)
-  window.onscroll = () => checkPositions(actions)
+  const throttledCheckPositions = throttle(() => checkPositions(actions), 200)
+  window.addEventListener('scroll', throttledCheckPositions)
 }
