@@ -2,8 +2,8 @@ import throttle from 'lodash/throttle'
 import { flatten } from 'ramda'
 
 const checkPositions = (actions, firstInvocation = false) => {
-  actions.map((action) => {
-    action.elements.map((el) => {
+  actions.map(action => {
+    action.elements.map(el => {
       const rect = el.DOMElement.getBoundingClientRect()
       const elHeight = el.DOMElement.offsetHeight
       const offset = action.offsetPerc && !firstInvocation ? (window.innerHeight * action.offsetPerc/100) : 0
@@ -39,27 +39,23 @@ const checkPositions = (actions, firstInvocation = false) => {
 }
 
 export default (config) => {
-  const actions = config.actions
-    .map((action) => {
-      if (action.selectors.length === 0) {
-        throw new Error('action.selectors must have at least one element')
-      }
-      const elements = flatten(action.selectors
-        .map((sel) => {
-          return document.querySelectorAll(sel)
-        })
-      )
-      return {
-        elements: elements
-          .map((DOMElement) => {
-            return {
-              DOMElement,
-              isInViewport: false,
-            }
-          }),
-        ...action
-      }
-    })
+  const actions = config.actions.map(action => {
+    if (action.selectors.length === 0) {
+      throw new Error('action.selectors must have at least one element')
+    }
+    const elements = flatten(action.selectors.map(
+      sel => document.querySelectorAll(sel)
+    ))
+    return {
+      elements: elements.map(DOMElement => {
+        return {
+          DOMElement,
+          isInViewport: false,
+        }
+      }),
+      ...action
+    }
+  })
 
   // initial check, then tether to scroll
   checkPositions(actions, true)
