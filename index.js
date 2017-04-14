@@ -59,6 +59,6 @@ export default (config) => {
 
   // initial check, then tether to scroll
   checkPositions(actions, true)
-  const throttledCheckPositions = throttle(() => checkPositions(actions), 200)
-  window.addEventListener('scroll', throttledCheckPositions)
+  const checkPositionsInThrottle = () => checkPositions(actions)
+  window.addEventListener('scroll', throttle(checkPositionsInThrottle, 200))
 }
