@@ -4,7 +4,7 @@
   "description": "Actions on scrolling to an element",
   "main": "build/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack -p --config webpack.config.js"
   },
   "keywords": [
     "scroll",
