@@ -1,13 +1,13 @@
 var path = require('path')
 
 module.exports = {
-  devtool: 'cheap-module-source-map',
   entry: {
-    main: './index.js',
+    index: './index.js',
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js' // Template based on keys in entry above
+    filename: '[name].js', // Template based on keys in entry above
+    libraryTarget: 'umd'
   },
   babel: {
     presets: ['es2015'],

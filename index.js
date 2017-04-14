@@ -38,8 +38,8 @@ const checkPositions = (actions, firstInvocation = false) => {
   })
 }
 
-export default function scrollActions (conf) {
-  const actions = conf.actions
+export default (config) => {
+  const actions = config.actions
     .map((action) => {
       if (action.selectors.length === 0) {
         throw new Error('action.selectors must have at least one element')
