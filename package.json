@@ -5,7 +5,8 @@
   "main": "./dist/index.js",
   "scripts": {
     "build": "webpack -p --config webpack.config.js",
-    "dev": "webpack --watch --config webpack.config.js"
+    "dev": "webpack --watch --config webpack.config.js",
+    "webpack-stats": "NODE_ENV=production webpack --config webpack.config.js -p --json > stats.json"
   },
   "keywords": [
     "scroll",
