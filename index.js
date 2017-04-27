@@ -4,9 +4,10 @@ import { flatten } from 'ramda'
 const checkPositions = (actions, firstInvocation = false) => {
   actions.map(action => {
     action.elements.map(el => {
+      const winHeight = window.innerHeight
       const rect = el.DOMElement.getBoundingClientRect()
       const elHeight = el.DOMElement.offsetHeight
-      const offset = action.offsetPerc && !firstInvocation ? (window.innerHeight * action.offsetPerc/100) : 0
+      const offset = action.offsetPerc && !firstInvocation ? (winHeight * action.offsetPerc/100) : 0
 
       if (
         rect.right < 0 ||
@@ -15,7 +16,7 @@ const checkPositions = (actions, firstInvocation = false) => {
 
       if (
         rect.top >= 0 &&
-        window.innerHeight - rect.bottom > 0
+        winHeight - rect.bottom > 0
       ) {
         action.fullInViewEnter && action.fullInViewEnter(el.DOMElement)
       } else {
@@ -24,7 +25,7 @@ const checkPositions = (actions, firstInvocation = false) => {
 
       if (
         rect.top >= -elHeight &&
-        rect.bottom <= window.innerHeight + elHeight - offset
+        rect.bottom <= winHeight + elHeight - offset
       ) {
         if (action.inView) {
           action.inView(el.DOMElement)
