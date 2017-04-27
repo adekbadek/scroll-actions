@@ -14,6 +14,15 @@ const checkPositions = (actions, firstInvocation = false) => {
       ) { return }
 
       if (
+        rect.top >= 0 &&
+        window.innerHeight - rect.bottom > 0
+      ) {
+        action.fullInViewEnter && action.fullInViewEnter(el.DOMElement)
+      } else {
+        action.fullInViewLeave && action.fullInViewLeave(el.DOMElement)
+      }
+
+      if (
         rect.top >= -elHeight &&
         rect.bottom <= window.innerHeight + elHeight - offset
       ) {
