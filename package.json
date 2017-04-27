@@ -1,6 +1,6 @@
 {
   "name": "scroll-actions",
-  "version": "0.0.1",
+  "version": "0.1.1",
   "description": "Actions on scrolling to an element",
   "main": "./dist/index.js",
   "scripts": {
