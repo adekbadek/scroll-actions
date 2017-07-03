@@ -13,6 +13,10 @@
     "scroll",
     "viewport"
   ],
+  "repository": { 
+    "type": "git",
+    "url": "github.com/adekbadek/scroll-actions.git"
+  },
   "author": "Adam Borowski",
   "license": "ISC",
   "dependencies": {
